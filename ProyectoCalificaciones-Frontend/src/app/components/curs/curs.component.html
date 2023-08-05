@@ -1,0 +1,69 @@
+<app-navigation></app-navigation>
+<div class="arrow-left" (click)="volver()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="arrow-right" (click)="siguiente()">
+  <div class="arrow-right-top"></div>
+  <div class="arrow-right-bottom"></div>
+</div>
+
+<div class="formularioRegistro">
+  <h2>Registrar</h2>
+  <h2>CURSO</h2>
+  <br />
+
+  <form [formGroup]="cursoForm" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Nombre</label>
+        <input
+          type="text"
+          formControlName="nombre"
+          class="form-control"
+          placeholder="Ingrese el nombre"
+        />
+      </div>
+    </div>
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="cursoForm.invalid"
+    >
+      Guardar
+    </button>
+  </form>
+</div>
+
+<div class="tableCursos">
+  <div class="table-responsive">
+    <h2>Cursos registrados</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cursos">
+          <td>{{ item.idCurso }}</td>
+          <td>{{ item.nombre }}</td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="actualizar(item)"
+          >
+            Editar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(item)">
+            Eliminar
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

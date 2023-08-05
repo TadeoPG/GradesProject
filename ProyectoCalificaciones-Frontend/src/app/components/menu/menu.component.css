@@ -1,0 +1,22 @@
+.d-flex {
+    cursor: pointer;
+}
+
+.Bienvenida {
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .card {
+    background-size: cover;
+    transition: transform 0.3s ease-in;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .pt-5 {
+    color: #282ac9;
+  }

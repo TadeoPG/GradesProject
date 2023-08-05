@@ -1,0 +1,84 @@
+<app-navigation></app-navigation>
+<div class="arrow-left" (click)="volver()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="arrow-right" (click)="siguiente()">
+  <div class="arrow-right-top"></div>
+  <div class="arrow-right-bottom"></div>
+</div>
+
+
+<div class="formularioRegistro">
+  <h2>Registrar</h2>
+  <h2>ALUMNO</h2>
+  <br />
+
+  <form [formGroup]="alumnoForm" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Nombres</label>
+        <input
+          type="text"
+          formControlName="nombres"
+          class="form-control"
+          placeholder="Ingrese su nombre"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Apellidos</label>
+        <input
+          type="text"
+          formControlName="apellidos"
+          class="form-control"
+          placeholder="Ingrese sus apellidos"
+        />
+      </div>
+    </div>
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="alumnoForm.invalid"
+    >
+      Guardar
+    </button>
+  </form>
+</div>
+
+<div class="tableAlumnos">
+  <div class="table-responsive">
+    <h2>Alumnos registrados</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of alumnos">
+          <td>{{ item.idAlumno }}</td>
+          <td>{{ item.nombres }}</td>
+          <td>{{ item.apellidos }}</td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="actualizar(item)"
+          >
+            Editar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(item)">
+            Eliminar
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

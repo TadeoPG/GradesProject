@@ -1,0 +1,177 @@
+<app-navigation></app-navigation>
+
+<div class="arrow-left" (click)="volver()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="formularioRegistro">
+  <h2>Registrar</h2>
+  <h2>CALIFICACIÓN</h2>
+  <br />
+
+  <form [formGroup]="calificacionForm" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Alumno</label>
+        <select
+          name="alumnos"
+          id="alumnos"
+          formControlName="alumno"
+          class="form-select"
+        >
+          <!-- Ejemplo del [ngValue] que solo reciba lo que que queremos en lugar de un objeto -->
+          <!-- Si elegimos esta manera, tendremos que enviar datos a este select con ese formato -->
+          <!-- <option
+            [ngValue]="item.nombres + ' ' + item.apellidos"
+            *ngFor="let item of alumnos"
+          >
+            {{ item.nombres + " " + item.apellidos }}
+          </option> -->
+          <!-- Esto es en caso que se quiera mostrar un objeto como tal -->
+          <!-- PERO, esto automáticamente lo descompondrá en el formato de nombres y apelidos -->
+          <!-- Al final tenemos el mismo resultado -->
+          <option [ngValue]="item" *ngFor="let item of alumnos">
+            {{ item.nombres + " " + item.apellidos }}
+          </option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Curso</label>
+        <select
+          name="cursos"
+          id="cursos"
+          formControlName="curso"
+          class="form-select"
+        >
+          <option [ngValue]="item" *ngFor="let item of cursos">
+            {{ item.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Aula</label>
+        <select
+          name="aulas"
+          id="aulas"
+          formControlName="aula"
+          class="form-select"
+        >
+          <option [ngValue]="item" *ngFor="let item of aulas">
+            {{ item.nivel + " " + item.seccion }}
+          </option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Bimestre</label>
+        <input
+          type="text"
+          formControlName="bimestre"
+          class="form-control"
+          placeholder="Ingrese el bimestre"
+        />
+      </div>
+    </div>
+    <br />
+
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Examen 1</label>
+        <input
+          type="text"
+          formControlName="examen1"
+          class="form-control"
+          placeholder="Ingrese la nota"
+        />
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Examen 2</label>
+        <input
+          type="text"
+          formControlName="examen2"
+          class="form-control"
+          placeholder="Ingrese la nota"
+        />
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Tareas</label>
+        <input
+          type="text"
+          formControlName="tareas"
+          class="form-control"
+          placeholder="Ingrese la nota"
+        />
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label"
+          >Examen Final</label
+        >
+        <input
+          type="text"
+          formControlName="examenFinal"
+          class="form-control"
+          placeholder="Ingrese la nota"
+        />
+      </div>
+    </div>
+
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="calificacionForm.invalid"
+    >
+      Guardar
+    </button>
+  </form>
+</div>
+
+<div class="tableCalificaciones">
+  <div class="table-responsive">
+    <h2>Calificaciones registradas</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Alumno</th>
+          <th>Curso</th>
+          <th>Aula</th>
+          <th>Bimestre</th>
+          <th>Examen1</th>
+          <th>Examen2</th>
+          <th>Tareas</th>
+          <th>Examen final</th>
+          <th>Estado</th>
+          <th>Promedio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of calificaciones">
+          <td>{{ item.idCalificacion }}</td>
+          <td>{{ item.alumno.nombres + " " + item.alumno.apellidos }}</td>
+          <td>{{ item.curso.nombre }}</td>
+          <td>{{ item.aula.nivel + " " + item.aula.seccion }}</td>
+          <td>{{ item.bimestre }}</td>
+          <td>{{ item.examen1 }}</td>
+          <td>{{ item.examen2 }}</td>
+          <td>{{ item.tareas }}</td>
+          <td>{{ item.examenFinal }}</td>
+          <td>{{ item.estado }}</td>
+          <td>{{ item.promedio }}</td>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="actualizar(item)"
+          >
+            Editar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(item)">
+            Eliminar
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

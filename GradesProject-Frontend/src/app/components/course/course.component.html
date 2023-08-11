@@ -1,0 +1,69 @@
+<app-navigation></app-navigation>
+<div class="arrow-left" (click)="back()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="arrow-right" (click)="next()">
+  <div class="arrow-right-top"></div>
+  <div class="arrow-right-bottom"></div>
+</div>
+
+<div class="registrationForm">
+  <h2>Register</h2>
+  <h2>COURSE</h2>
+  <br />
+
+  <form [formGroup]="courseForm" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Input the name"
+        />
+      </div>
+    </div>
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="courseForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>
+
+<div class="coursesTable">
+  <div class="table-responsive">
+    <h2>Registered Courses</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of courses">
+          <td>{{ item.idCourse }}</td>
+          <td>{{ item.name }}</td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="update(item)"
+          >
+            Edit
+          </button>
+          <button type="button" class="btn btn-danger" (click)="delete(item)">
+            Delete
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

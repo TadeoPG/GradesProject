@@ -1,0 +1,79 @@
+<app-navigation></app-navigation>
+<div class="arrow-left" (click)="back()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="arrow-right" (click)="next()">
+  <div class="arrow-right-top"></div>
+  <div class="arrow-right-bottom"></div>
+</div>
+
+<div class="registrationForm">
+  <h2>Register</h2>
+  <h2>STUDENT</h2>
+  <br />
+
+  <form [formGroup]="studentForm" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Names</label>
+        <input
+          type="text"
+          formControlName="names"
+          class="form-control"
+          placeholder="Input your names"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Last Names</label>
+        <input
+          type="text"
+          formControlName="lastNames"
+          class="form-control"
+          placeholder="Input your last names"
+        />
+      </div>
+    </div>
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="studentForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>
+
+<div class="studentsTable">
+  <div class="table-responsive">
+    <h2>Registered Students</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Names</th>
+          <th>Last Names</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of students">
+          <td>{{ item.idStudent }}</td>
+          <td>{{ item.names }}</td>
+          <td>{{ item.lastNames }}</td>
+          <button type="button" class="btn btn-success" (click)="update(item)">
+            Edit
+          </button>
+          <button type="button" class="btn btn-danger" (click)="delete(item)">
+            Delete
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

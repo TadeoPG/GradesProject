@@ -1,0 +1,80 @@
+<app-navigation></app-navigation>
+
+<div class="arrow-left" (click)="back()">
+  <div class="arrow-top"></div>
+  <div class="arrow-bottom"></div>
+</div>
+
+<div class="arrow-right" (click)="next()">
+  <div class="arrow-right-top"></div>
+  <div class="arrow-right-bottom"></div>
+</div>
+
+<div class="registrationForm">
+  <h2>Register</h2>
+  <h2>CLASSROOM</h2>
+  <br />
+
+  <form [formGroup]="classroomForm" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Level</label>
+        <input
+          type="text"
+          formControlName="level"
+          class="form-control"
+          placeholder="Input the level"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput" class="form-label">Section</label>
+        <input
+          type="text"
+          formControlName="section"
+          class="form-control"
+          placeholder="Input the section"
+        />
+      </div>
+    </div>
+    <br />
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="classroomForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>
+
+<div class="classroomsTable">
+  <div class="table-responsive">
+    <h2>Registered Classrooms</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Level</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of classrooms">
+          <td>{{ item.idClassroom }}</td>
+          <td>{{ item.level }}</td>
+          <td>{{ item.section }}</td>
+          <button type="button" class="btn btn-success" (click)="update(item)">
+            Edit
+          </button>
+          <button type="button" class="btn btn-danger" (click)="delete(item)">
+            Delete
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
